@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import {
+  NativeImage,
   NativeList,
   NativeText,
   NativeTouch,
@@ -9,6 +10,8 @@ import {
 
 import {AppNavigationProps} from '../../navigations/types';
 import {Movie} from '../../types/movie';
+import {View} from 'react-native';
+import {scale} from '../../utils/responsive';
 import {useMovieStore} from '../../store/movie';
 import useMoviesQuery from '../../query/useMoviesQuery';
 import {withContainer} from '../../hoc';
@@ -21,9 +24,16 @@ const MovieList: React.FC<Props> = ({navigation}) => {
 
   const renderItem = React.useCallback(
     (item: Movie, onPress: () => void) => (
-      <NativeTouch onPress={onPress} background="primary">
-        <NativeText color="textPrimary">{item.title}</NativeText>
-      </NativeTouch>
+      <NativeView background="#">
+        <NativeTouch onPress={onPress} background="primary">
+          <NativeImage
+            uri={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+            rounded={'sm'}
+            size={150}
+          />
+          <NativeText color="textPrimary">{item.title}</NativeText>
+        </NativeTouch>
+      </NativeView>
     ),
     [setMovie],
   );
@@ -49,7 +59,7 @@ const MovieList: React.FC<Props> = ({navigation}) => {
   }
 
   return (
-    <NativeView>
+    <>
       <NativeText color="textPrimary">Movie List</NativeText>
       <NativeList
         data={movies?.results}
@@ -57,7 +67,7 @@ const MovieList: React.FC<Props> = ({navigation}) => {
         renderItem={renderItem}
         onPressItem={onPressItem}
       />
-    </NativeView>
+    </>
   );
 };
 

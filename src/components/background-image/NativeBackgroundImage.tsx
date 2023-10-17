@@ -1,6 +1,7 @@
+import React, {Children} from 'react';
+
 import FastImage from 'react-native-fast-image';
 import {ImageProps} from 'react-native';
-import React from 'react';
 import {SpaceValues} from '../../types/theme';
 import {scale} from '../../utils/responsive';
 import {useTheme} from '../../hooks';
@@ -9,6 +10,7 @@ type NativeImageProps = {
   rounded?: SpaceValues | number;
   size: SpaceValues | number;
   uri: string;
+  childern: React.ReactNode;
 } & Omit<ImageProps, 'source'>;
 
 const SIZE = {
@@ -18,8 +20,8 @@ const SIZE = {
   xsm: scale(12),
 };
 
-const NativeImage = (props: NativeImageProps) => {
-  const {rounded, size, style, uri} = props;
+const NativeBackgroundImage = (props: NativeImageProps) => {
+  const {rounded, size, style, uri, childern, ...otherProps} = props;
   const {theme} = useTheme();
 
   const imageStyle = React.useMemo(
@@ -43,9 +45,10 @@ const NativeImage = (props: NativeImageProps) => {
         priority: FastImage.priority.normal,
         cache: 'cacheOnly',
       }}
-      resizeMode={FastImage.resizeMode.cover}
-    />
+      resizeMode={FastImage.resizeMode.cover}>
+      {childern}
+    </FastImage>
   );
 };
 
-export default NativeImage;
+export default NativeBackgroundImage;
