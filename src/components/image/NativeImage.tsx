@@ -1,15 +1,16 @@
-import { Image, ImageProps } from "react-native";
-
-import React from "react";
-import { SpaceValues } from "../../types/theme";
-import { scale } from "../../utils/responsive";
-import { useTheme } from "../../hooks";
+import FastImage from 'react-native-fast-image';
+import { ImageProps } from 'react-native';
+import React from 'react';
+import { SpaceValues } from '../../types/theme';
+import { scale } from '../../utils/responsive';
+import { useTheme } from '../../hooks';
 
 type NativeImageProps = {
-  source: { uri: string } | string;
+  source: {uri: string} | string;
   rounded?: SpaceValues | number;
-  size?: SpaceValues | string;
-} & Omit<ImageProps, "source">;
+  size?: SpaceValues | number;
+  uri: string;
+} & Omit<ImageProps, 'source'>;
 
 const SIZE = {
   lg: scale(48),
@@ -19,25 +20,36 @@ const SIZE = {
 };
 
 const NativeImage = (props: NativeImageProps) => {
-  const { source, rounded = "sm", size = "lg", style, ...otherProps } = props;
-  const { theme } = useTheme();
+  const {
+    source,
+    rounded = 'sm',
+    size = 'lg',
+    style,
+    uri,
+    ...otherProps
+  } = props;
+  const {theme} = useTheme();
 
   const imageStyle = React.useMemo(
     () => ({
-      ...(size && { width: SIZE[size] || size, height: SIZE[size] || size }),
-      ...(rounded && { borderRadius: theme.spacing[rounded] }),
+      width: typeof size === 'string' ? SIZE[size] : size,
+      height: typeof size === 'string' ? SIZE[size] : size,
+      borderRadius:
+        typeof rounded === 'string' ? theme.spacing[rounded] : rounded,
     }),
-    [theme, size, rounded]
+    [theme, size, rounded],
   );
 
   return (
-    <Image
-      source={source}
+    <FastImage
       style={{
         ...imageStyle,
-        resizeMode: "cover",
       }}
-      {...otherProps}
+      source={{
+        uri: uri,
+        priority: FastImage.priority.normal,
+      }}
+      resizeMode={FastImage.resizeMode.contain}
     />
   );
 };
