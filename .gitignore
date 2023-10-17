@@ -1,0 +1,77 @@
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+
+# Dependency directories
+/*/node_modules/
+npm-debug.log
+yarn-error.log
+
+# Dependency files
+package-lock.json
+yarn.lock
+
+# Babel
+dist/
+.cache/
+.eslintcache
+
+# React Native
+android/app/build/
+android/build/
+ios/build/
+ios/Pods/
+*.log
+*.pot
+*.xcworkspace
+.Prettier*
+
+# Gradle files
+android/.gradle
+android/captures/
+android/local.properties
+
+# Android APK signing files
+android/app/release.keystore
+
+# IDE files
+.idea/
+.vscode/
+
+# macOS directories
+.DS_Store
+
+# React Query's query keys
+cypress/fixtures/query-keys.json
+
+# Android Emulator AVD
+android/.idea/
+android/local.properties
+android/.idea/caches/
+android/.idea/libraries/
+android/.idea/modules.xml
+android/.idea/workspace.xml
+android/.idea/navEditor.xml
+android/.idea/assetWizardSettings.xml
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# Android Studio navigation file
+.idea/navEditor.xml
+
+# User-specific files
+.idea/codeStyles/
+.idea/shelf/
+.idea/inspectionProfiles/
+.idea/webResources/
+.idea/dictionaries/
+.idea/sonarlint/
+
+# Node.js ESLint configuration
+.eslintrc
