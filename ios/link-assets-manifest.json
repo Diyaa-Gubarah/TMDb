@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Dubai-Bold.ttf",
+      "sha1": "317d205d4f64d93dc138d90852093bc6367817bc"
+    },
+    {
+      "path": "src/assets/fonts/Dubai-Light.ttf",
+      "sha1": "95182c6986100bb609651d678f62da642147abc2"
+    },
+    {
+      "path": "src/assets/fonts/Dubai-Medium.ttf",
+      "sha1": "b0c7c7deb0a53dbd399b09a7019e32c3f83b4b4f"
+    },
+    {
+      "path": "src/assets/fonts/Dubai-Regular.ttf",
+      "sha1": "bd3d8c34c53367e32d1bfd48474d9a0005fdbe9b"
+    }
+  ]
+}
