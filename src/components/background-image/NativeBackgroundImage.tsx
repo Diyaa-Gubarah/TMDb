@@ -27,7 +27,7 @@ const NativeBackgroundImage = (props: NativeImageProps) => {
       source={{
         uri: uri,
         priority: FastImage.priority.normal,
-        cache: FastImage.cacheControl.cacheOnly,
+        cache: FastImage.cacheControl.immutable,
       }}
       resizeMode={FastImage.resizeMode.cover}>
       {children}

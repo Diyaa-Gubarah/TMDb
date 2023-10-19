@@ -25,7 +25,7 @@ const NativeImage = (props: NativeImageProps) => {
       source={{
         uri: uri,
         priority: FastImage.priority.normal,
-        cache: FastImage.cacheControl.cacheOnly,
+        cache: FastImage.cacheControl.immutable,
       }}
     />
   );
