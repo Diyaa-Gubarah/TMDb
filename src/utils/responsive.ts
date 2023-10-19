@@ -11,7 +11,7 @@ const scale = (size: number) => (width / 320) * size;
    based on the height of the device's screen. 
 */
 
-const verticalScale = (size: number) => (height / 480) * size;
+const verticalScale = (size: number) => (height / 720) * size;
 
 
 /* 
