@@ -2,16 +2,17 @@ import * as React from 'react';
 
 import {NativeIcon, NativeText} from '../../../components';
 import {StyleSheet, View} from 'react-native';
-
-import {useTheme} from '../../../hooks';
+import {useRTL, useTheme} from '../../../hooks';
 
 const Rating: React.FC<{voteAverage: number}> = ({voteAverage}) => {
   const {theme} = useTheme();
+  const isRTL = useRTL();
+
   const styles = React.useMemo(
     () =>
       StyleSheet.create({
         ratingContainer: {
-          flexDirection: 'row',
+          flexDirection: isRTL ? 'row-reverse' : 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
           backgroundColor: theme.colors.primary,

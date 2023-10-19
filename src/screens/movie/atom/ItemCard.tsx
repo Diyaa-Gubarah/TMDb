@@ -1,11 +1,11 @@
 import {NativeText, TouchIcon} from '../../../components';
 import {StyleSheet, View} from 'react-native';
+import {useRTL, useTheme} from '../../../hooks';
 
 import {Movie} from '../../../types/movie';
 import Rating from '../../movie-detail/atom/Rating';
 import React from 'react';
 import {truncateTitle} from '../../../utils/utils';
-import {useTheme} from '../../../hooks';
 
 type Props = {
   item: Movie;
@@ -14,7 +14,7 @@ type Props = {
 
 const ItemCard: React.FC<Props> = ({item, onPressItem}) => {
   const {theme} = useTheme();
-
+  const isRTL = useRTL();
   const styles = React.useMemo(
     () =>
       StyleSheet.create({
@@ -48,7 +48,7 @@ const ItemCard: React.FC<Props> = ({item, onPressItem}) => {
       <View style={styles.ratingContainer}>
         <Rating voteAverage={item.vote_average} />
         <TouchIcon
-          name="chevron-forward"
+          name={isRTL ? 'chevron-back' : 'chevron-forward'}
           color="textPrimary"
           onPress={() => onPressItem(item)}
           size={22}

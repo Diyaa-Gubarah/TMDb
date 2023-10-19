@@ -1,12 +1,14 @@
 import * as React from 'react';
 
 import {StyleSheet, View} from 'react-native';
+import {useRTL, useTheme} from '../../../hooks';
 
 import {TouchIcon} from '../../../components';
-import {useTheme} from '../../../hooks';
 
 const BackButton: React.FC<{onPressBack: () => void}> = ({onPressBack}) => {
   const {theme} = useTheme();
+  const isRTL = useRTL();
+
   const styles = React.useMemo(
     () =>
       StyleSheet.create({
@@ -23,7 +25,7 @@ const BackButton: React.FC<{onPressBack: () => void}> = ({onPressBack}) => {
   return (
     <View style={styles.backButton}>
       <TouchIcon
-        name="chevron-back"
+        name={isRTL ? 'chevron-forward' : 'chevron-back'}
         color="primary"
         size={22}
         onPress={onPressBack}

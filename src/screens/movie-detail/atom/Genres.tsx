@@ -1,18 +1,20 @@
 import * as React from 'react';
 
 import {StyleSheet, View} from 'react-native';
+import {useRTL, useTheme} from '../../../hooks';
 
 import {NativeText} from '../../../components';
-import {useTheme} from '../../../hooks';
 
 const Genres: React.FC<{genres: string[]}> = ({genres}) => {
   const {theme} = useTheme();
+  const isRTL = useRTL();
+
   const styles = React.useMemo(
     () =>
       StyleSheet.create({
         infoRow: {
           flex: 1,
-          flexDirection: 'row',
+          flexDirection: isRTL ? 'row-reverse' : 'row',
           alignItems: 'center',
         },
         genreContainer: {
@@ -33,7 +35,6 @@ const Genres: React.FC<{genres: string[]}> = ({genres}) => {
           </View>
         )),
       )}
-      <NativeText size="sm" color="textPrimary"></NativeText>
     </View>
   );
 };

@@ -6,6 +6,7 @@ import {
   TouchIcon,
 } from '../../../components';
 import React, {useMemo} from 'react';
+import {useRTL, useTheme} from '../../../hooks';
 
 import BackButton from './BackButton';
 import Genres from './Genres';
@@ -13,7 +14,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import MovieImage from './MovieImage';
 import PlayButton from './PlayButton';
 import Rating from './Rating';
-import {useTheme} from '../../../hooks';
 
 const {height, width} = Dimensions.get('screen');
 
@@ -33,6 +33,7 @@ const MovieBackdrop: React.FC<MovieBackdropProps> = ({
   genres,
 }) => {
   const {theme} = useTheme();
+  const isRTL = useRTL();
 
   const styles = useMemo(
     () =>
@@ -57,7 +58,7 @@ const MovieBackdrop: React.FC<MovieBackdropProps> = ({
         },
         ratingContainerInner: {
           flex: 1,
-          flexDirection: 'row',
+          flexDirection: isRTL ? 'row-reverse' : 'row',
           alignItems: 'center',
         },
       }),

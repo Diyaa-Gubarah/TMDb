@@ -1,16 +1,17 @@
-import { MovieBackdrop, MovieInfo } from './atom';
+import {MovieBackdrop, MovieInfo} from './atom';
+import {useRTL, useTheme} from '../../hooks';
 
-import { AppNavigationProps } from '../../navigations/types';
-import { GENRES } from '../../data/GENRES';
+import {AppNavigationProps} from '../../navigations/types';
+import {GENRES} from '../../data/GENRES';
 import React from 'react';
-import { ScrollView } from 'react-native';
-import { useMovieStore } from '../../store/movie';
-import { useTheme } from '../../hooks';
+import {ScrollView} from 'react-native';
+import {useMovieStore} from '../../store/movie';
 
 type Props = AppNavigationProps<'MovieDetail'>;
 
 const MovieDetail: React.FC<Props> = ({navigation}) => {
   const {theme} = useTheme();
+  const isRTL = useRTL();
   const selectedMovie = useMovieStore(state => state.selectedMovie);
 
   const genres = React.useMemo(
@@ -27,6 +28,7 @@ const MovieDetail: React.FC<Props> = ({navigation}) => {
       style={{
         flex: 1,
         backgroundColor: theme.colors.background,
+        direction: isRTL ? 'rtl' : 'ltr',
       }}>
       <MovieBackdrop
         backdropPath={selectedMovie.poster_path}

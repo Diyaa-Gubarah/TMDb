@@ -1,10 +1,10 @@
 import {Animated, Dimensions, FlatList, View} from 'react-native';
 import React, {useCallback, useMemo} from 'react';
+import {useRTL, useTheme} from '../../hooks';
 
 import LinearGradient from 'react-native-linear-gradient';
 import {Movie} from '../../types/movie';
 import {NativeImage} from '../../components';
-import {useTheme} from '../../hooks';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -15,6 +15,7 @@ type Props = {
 
 const BackgroundDrop = ({data, scrollX}: Props) => {
   const {theme} = useTheme();
+  const isRTL = useRTL();
 
   const calculateTranslateX = useCallback(
     (index: number) => {
@@ -24,10 +25,10 @@ const BackgroundDrop = ({data, scrollX}: Props) => {
           (index + 1) * width * 0.75,
           (index + 2) * width * 0.75,
         ],
-        outputRange: [0, -width, 0],
+        outputRange: isRTL ? [-width, 0, -width] : [0, -width, 0],
       });
     },
-    [scrollX.current],
+    [scrollX, isRTL],
   );
 
   const renderItem = useCallback(
@@ -81,6 +82,8 @@ const BackgroundDrop = ({data, scrollX}: Props) => {
         contentContainerStyle={{
           width,
           height,
+          // flexGrow: 1,
+          // flexDirection: isRTL ? 'row-reverse' : 'row',
         }}
         renderItem={renderItem}
         horizontal
