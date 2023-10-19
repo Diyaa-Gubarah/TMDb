@@ -14,8 +14,8 @@ import {ThemeProvider} from './src/hooks/useTheme';
 const queryClient = new QueryClient();
 
 // Disable RTL layout and RTL support
-I18nManager.allowRTL(false);
-I18nManager.forceRTL(false);
+// I18nManager.allowRTL(false);
+// I18nManager.forceRTL(false);
 
 function App() {
   return (
