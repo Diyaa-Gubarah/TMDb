@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { StyleSheet, View } from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
-import { NativeText } from '../../../components';
-import { useTheme } from '../../../hooks';
+import {NativeText} from '../../../components';
+import {useTheme} from '../../../hooks';
 
 const Genres: React.FC<{genres: string[]}> = ({genres}) => {
   const {theme} = useTheme();
@@ -19,7 +19,7 @@ const Genres: React.FC<{genres: string[]}> = ({genres}) => {
           marginLeft: theme.spacing.md,
         },
       }),
-    [theme],
+    [theme.id],
   );
 
   return (

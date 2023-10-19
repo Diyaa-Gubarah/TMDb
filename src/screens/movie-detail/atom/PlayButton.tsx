@@ -16,7 +16,7 @@ const PlayButton: React.FC = () => {
           borderRadius: theme.spacing.md,
         },
       }),
-    [theme],
+    [theme.id],
   );
 
   return (

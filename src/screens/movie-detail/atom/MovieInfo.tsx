@@ -1,5 +1,3 @@
-// MovieInfo.tsx
-
 import {NativeText} from '../../../components';
 import React from 'react';
 import {View} from 'react-native';

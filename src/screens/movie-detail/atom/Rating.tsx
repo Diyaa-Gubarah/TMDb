@@ -22,7 +22,7 @@ const Rating: React.FC<{voteAverage: number}> = ({voteAverage}) => {
           marginHorizontal: theme.spacing.sm,
         },
       }),
-    [theme],
+    [theme.id],
   );
 
   return (

@@ -17,7 +17,7 @@ const BackButton: React.FC<{onPressBack: () => void}> = ({onPressBack}) => {
           padding: theme.spacing.md,
         },
       }),
-    [theme],
+    [theme.id],
   );
 
   return (

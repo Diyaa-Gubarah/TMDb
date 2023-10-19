@@ -61,7 +61,7 @@ const MovieBackdrop: React.FC<MovieBackdropProps> = ({
           alignItems: 'center',
         },
       }),
-    [theme],
+    [theme.id],
   );
 
   return (

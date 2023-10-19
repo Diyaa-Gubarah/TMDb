@@ -1,22 +1,12 @@
-import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
 import {MovieBackdrop, MovieInfo} from './atom';
-import {
-  NativeIcon,
-  NativeImage,
-  NativeText,
-  NativeView,
-  TouchIcon,
-} from '../../components';
+import {ScrollView, StyleSheet} from 'react-native';
 
 import {AppNavigationProps} from '../../navigations/types';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {GENRES} from '../../data/GENRES';
-import LinearGradient from 'react-native-linear-gradient';
 import React from 'react';
 import {useMovieStore} from '../../store/movie';
 import {useTheme} from '../../hooks';
 
-const {height, width} = Dimensions.get('window');
 type Props = AppNavigationProps<'MovieDetail'>;
 
 const MovieDetail: React.FC<Props> = ({navigation}) => {
