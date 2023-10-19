@@ -1,17 +1,12 @@
 import * as React from 'react';
 
-import {Animated, Dimensions, View} from 'react-native';
-import {
-  Header,
-  NativeBackgroundImage,
-  NativeIcon,
-  NativeText,
-  NativeView,
-  TouchIcon,
-} from '../../components';
+import {Animated, Dimensions} from 'react-native';
+import {Header, MovieListItem} from './atom';
+import {Loading, NativeText, NativeView, TouchIcon} from '../../components';
 
 import {AppNavigationProps} from '../../navigations/types';
 import BackgroundDrop from './BackgroundDrop';
+import {DEFAULT_DARK_THEME_ID} from '../../constants/themes';
 import {Movie} from '../../types/movie';
 import {scale} from '../../utils/responsive';
 import {useMovieStore} from '../../store/movie';
@@ -27,67 +22,40 @@ type Props = AppNavigationProps<'MovieList'>;
 const MovieList: React.FC<Props> = ({navigation}) => {
   const setMovie = useMovieStore(state => state.setMovie);
   const {movies, isLoading, isError} = useMoviesQuery();
-  const {theme} = useTheme();
+  const {theme, toggleTheme} = useTheme();
 
   const scrollX = React.useRef(new Animated.Value(0));
 
-  const handleScroll = Animated.event(
-    [{nativeEvent: {contentOffset: {x: scrollX.current}}}],
-    {useNativeDriver: true},
+  const handleScroll = React.useMemo(
+    () =>
+      Animated.event([{nativeEvent: {contentOffset: {x: scrollX.current}}}], {
+        useNativeDriver: true,
+      }),
+    [scrollX],
   );
 
-  const calculateTranslateY = (index: number) => {
-    return scrollX.current.interpolate({
-      inputRange: [
-        (index - 1) * itemWidth,
-        index * itemWidth,
-        (index + 1) * itemWidth,
-      ],
-      outputRange: [0, scale(-30), 0],
-    });
-  };
+  const calculateTranslateY = React.useCallback(
+    (index: number) => {
+      return scrollX.current.interpolate({
+        inputRange: [
+          (index - 1) * itemWidth,
+          index * itemWidth,
+          (index + 1) * itemWidth,
+        ],
+        outputRange: [0, scale(-30), 0],
+      });
+    },
+    [scrollX.current],
+  );
 
   const renderItem = React.useCallback(
     (item: Movie, onPress: (item: Movie) => void, index: number) => {
       return (
-        <View
-          style={{
-            width: itemWidth,
-            height: '60%',
-          }}>
-          <Animated.View
-            style={{
-              flex: 1,
-              transform: [{translateY: calculateTranslateY(index)}],
-              marginHorizontal: spacing,
-              borderRadius: theme.spacing.lg,
-              overflow: 'hidden',
-            }}>
-            <NativeBackgroundImage
-              uri={`https://image.tmdb.org/t/p/original${item.poster_path}`}>
-              <View
-                style={{
-                  backgroundColor: `${theme.colors.background}60`,
-                  borderRadius: theme.spacing.lg,
-                  padding: theme.spacing.md,
-                  margin: theme.spacing.md,
-                }}>
-                <NativeText color="textPrimary" size="lg" family="bold">
-                  {item.title}
-                </NativeText>
-                <NativeText color="textPrimary" size="sm">
-                  {item.vote_average}
-                </NativeText>
-                <TouchIcon
-                  background="primary"
-                  name="play"
-                  color="textPrimary"
-                  onPress={() => onPress(item)}
-                />
-              </View>
-            </NativeBackgroundImage>
-          </Animated.View>
-        </View>
+        <MovieListItem
+          translateY={calculateTranslateY(index)}
+          item={item}
+          onPressItem={() => onPress(item)}
+        />
       );
     },
     [setMovie],
@@ -107,22 +75,27 @@ const MovieList: React.FC<Props> = ({navigation}) => {
   );
 
   if (isLoading) {
-    return <NativeText color="primary">Loading</NativeText>;
+    return <Loading />;
   }
+
   if (isError) {
-    return <NativeText color="textPrimary">Error</NativeText>;
+    return (
+      <NativeView background="background" justify="center">
+        <NativeText color="textPrimary" size="md">
+          Something went wrong
+        </NativeText>
+      </NativeView>
+    );
   }
 
   return (
     <NativeView>
       <BackgroundDrop data={movies?.results} scrollX={scrollX} />
-      <Header
-        title="Tmdb"
-        left={<NativeIcon name="play" color="textPrimary" />}
-        right={<NativeIcon name="play" color="textPrimary" />}
-      />
+      <Header />
+
       <Animated.FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         bounces={false}
         onScroll={handleScroll}
         contentContainerStyle={{alignItems: 'center'}}
@@ -130,8 +103,8 @@ const MovieList: React.FC<Props> = ({navigation}) => {
         keyExtractor={keyExtractor}
         renderItem={({item, index}) => renderItem(item, onPressItem, index)}
         snapToAlignment={'start'}
-        snapToInterval={itemWidth} // item width + margin
-        scrollEventThrottle={16} // Adjust the value as needed
+        snapToInterval={itemWidth}
+        scrollEventThrottle={16}
         decelerationRate={0}
       />
     </NativeView>
