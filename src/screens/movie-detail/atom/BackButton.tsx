@@ -24,7 +24,7 @@ const BackButton: React.FC<{onPressBack: () => void}> = ({onPressBack}) => {
     <View style={styles.backButton}>
       <TouchIcon
         name="chevron-back"
-        color="background"
+        color="primary"
         size={22}
         onPress={onPressBack}
       />

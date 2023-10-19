@@ -14,12 +14,12 @@ const Rating: React.FC<{voteAverage: number}> = ({voteAverage}) => {
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
-          backgroundColor: theme.colors.textPrimary,
+          backgroundColor: theme.colors.primary,
           paddingHorizontal: theme.spacing.md,
           borderRadius: theme.spacing.lg,
         },
         ratingTextContainer: {
-          marginHorizontal: theme.spacing.xsm,
+          marginHorizontal: theme.spacing.sm,
         },
       }),
     [theme],
@@ -27,10 +27,9 @@ const Rating: React.FC<{voteAverage: number}> = ({voteAverage}) => {
 
   return (
     <View style={styles.ratingContainer}>
-      <NativeIcon name="star" color="background" size={12} />
-      <View style={styles.ratingTextContainer}>
-        <NativeText size="sm" color="background">{`${voteAverage}`}</NativeText>
-      </View>
+      <NativeIcon name="star" color="background" size={14} />
+      <View style={styles.ratingTextContainer} />
+      <NativeText size="sm" color="background">{`${voteAverage}`}</NativeText>
     </View>
   );
 };

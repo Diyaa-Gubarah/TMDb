@@ -12,7 +12,7 @@ const PlayButton: React.FC = () => {
       StyleSheet.create({
         playButton: {
           padding: theme.spacing.md,
-          backgroundColor: `${theme.colors.textPrimary}70`,
+          backgroundColor: `${theme.colors.background}70`,
           borderRadius: theme.spacing.md,
         },
       }),
@@ -21,7 +21,7 @@ const PlayButton: React.FC = () => {
 
   return (
     <View style={styles.playButton}>
-      <TouchIcon name="play" color="background" size={28} onPress={() => {}} />
+      <TouchIcon name="play" color="primary" size={28} onPress={() => {}} />
     </View>
   );
 };

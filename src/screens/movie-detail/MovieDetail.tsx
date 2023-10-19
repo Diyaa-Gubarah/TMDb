@@ -36,10 +36,10 @@ const MovieDetail: React.FC<Props> = ({navigation}) => {
       showsVerticalScrollIndicator={false}
       style={{
         flex: 1,
-        backgroundColor: theme.colors.background
+        backgroundColor: theme.colors.background,
       }}>
       <MovieBackdrop
-        backdropPath={selectedMovie.backdrop_path}
+        backdropPath={selectedMovie.poster_path}
         onPressBack={() => navigation?.goBack()}
         hasVideo={!selectedMovie?.video}
         voteAverage={selectedMovie.vote_average}

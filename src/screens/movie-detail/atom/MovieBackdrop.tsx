@@ -71,7 +71,7 @@ const MovieBackdrop: React.FC<MovieBackdropProps> = ({
         colors={['transparent', theme.colors.background]}
         style={styles.gradientContainer}>
         <BackButton onPressBack={onPressBack} />
-        {!hasVideo && <PlayButton />}
+        {hasVideo && <PlayButton />}
         <View style={styles.ratingContainerOuter}>
           <View style={styles.ratingContainerInner}>
             <Rating voteAverage={voteAverage} />
