@@ -9,3 +9,9 @@ if (settings.hasProperty("newArchEnabled") && settings.newArchEnabled == "true")
     include(":ReactAndroid:hermes-engine")
     project(":ReactAndroid:hermes-engine").projectDir = file('../node_modules/react-native/ReactAndroid/hermes-engine')
 }
+
+
+MYAPP_UPLOAD_STORE_FILE=tmdb_release.keystore
+MYAPP_UPLOAD_KEY_ALIAS= tmdb_alias
+MYAPP_UPLOAD_STORE_PASSWORD=sopersayan28555
+MYAPP_UPLOAD_KEY_PASSWORD=sopersayan28555
