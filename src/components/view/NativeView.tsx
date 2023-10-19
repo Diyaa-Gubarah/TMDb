@@ -1,24 +1,23 @@
-import { ColorValues, SpaceValues } from "../../types/theme";
+import {ColorValues, SpaceValues} from '../../types/theme';
+import {View, ViewStyle} from 'react-native';
 
-import React from "react";
-import { View } from "react-native";
-import { useTheme } from "../../hooks/index";
+import React from 'react';
+import {useTheme} from '../../hooks/index';
 
-// interface ContainerViewProps extends ViewProps {
 interface ContainerViewProps {
-  children: React.ReactNode;
-  padding?: SpaceValues | number;
-  background?: ColorValues | string;
-  marginHorizontal?: SpaceValues | number;
-  marginVertical?: SpaceValues | number;
-  direction?: "row" | "column" | "row-reverse";
+  children?: React.ReactNode;
+  padding?: SpaceValues;
+  background?: ColorValues;
+  marginHorizontal?: SpaceValues;
+  marginVertical?: SpaceValues;
+  direction?: 'row' | 'column' | 'row-reverse';
   justify?:
-    | "flex-start"
-    | "center"
-    | "flex-end"
-    | "space-around"
-    | "space-between";
-  align?: "flex-start" | "center" | "flex-end" | "stretch" | "baseline";
+    | 'flex-start'
+    | 'center'
+    | 'flex-end'
+    | 'space-around'
+    | 'space-between';
+  align?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
   flex?: boolean;
   rounded?: SpaceValues;
 }
@@ -32,35 +31,23 @@ const NativeView: React.FC<ContainerViewProps> = ({
   justify,
   align,
   rounded,
-  background = "background",
+  background,
   flex = true,
 }) => {
-  const { theme } = useTheme();
-  const containerStyle = React.useMemo(
-    () => ({
-      backgroundColor: theme.colors[background] || background,
-      padding: padding ? theme.spacing[padding] : 0,
-      marginHorizontal: marginHorizontal ? theme.spacing[marginHorizontal] : 0,
-      marginVertical: marginVertical ? theme.spacing[marginVertical] : 0,
-      ...(flex && { flex: 1 }),
-      ...(rounded && { borderRadius: theme.spacing[rounded] }),
-      ...(direction && { flexDirection: direction }),
-      ...(justify && { justifyContent: justify }),
-      ...(align && { alignItems: align }),
-    }),
-    [
-      flex,
-      rounded,
-      direction,
-      justify,
-      align,
-      background,
-      padding,
-      marginHorizontal,
-      marginVertical,
-      theme.id,
-    ]
-  );
+  const {theme} = useTheme();
+
+  const containerStyle: ViewStyle = {
+    overflow: 'hidden',
+    padding: padding ? theme.spacing[padding] : 0,
+    marginHorizontal: marginHorizontal ? theme.spacing[marginHorizontal] : 0,
+    marginVertical: marginVertical ? theme.spacing[marginVertical] : 0,
+    flex: flex ? 1 : undefined,
+    borderRadius: rounded ? theme.spacing[rounded] : undefined,
+    flexDirection: direction,
+    justifyContent: justify,
+    alignItems: align,
+    backgroundColor: background ? theme.colors[background] : undefined,
+  };
 
   return <View style={containerStyle}>{children}</View>;
 };

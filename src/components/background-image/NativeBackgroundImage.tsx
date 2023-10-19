@@ -1,38 +1,22 @@
-import React, {Children} from 'react';
-
 import FastImage from 'react-native-fast-image';
 import {ImageProps} from 'react-native';
-import {SpaceValues} from '../../types/theme';
-import {scale} from '../../utils/responsive';
+import React from 'react';
 import {useTheme} from '../../hooks';
 
 type NativeImageProps = {
-  rounded?: SpaceValues | number;
-  size: SpaceValues | number;
   uri: string;
-  childern: React.ReactNode;
+  children?: React.ReactNode;
 } & Omit<ImageProps, 'source'>;
 
-const SIZE = {
-  lg: scale(48),
-  md: scale(32),
-  sm: scale(24),
-  xsm: scale(12),
-};
-
 const NativeBackgroundImage = (props: NativeImageProps) => {
-  const {rounded, size, style, uri, childern, ...otherProps} = props;
+  const {uri, children} = props;
   const {theme} = useTheme();
-
   const imageStyle = React.useMemo(
     () => ({
       flex: 1,
-      width: typeof size === 'string' ? SIZE[size] : size,
-      height: typeof size === 'string' ? SIZE[size] : size,
-      borderRadius:
-        typeof rounded === 'string' ? theme.spacing[rounded] : rounded,
+      // backgroundColor: theme.colors.background,
     }),
-    [theme, size, rounded],
+    [],
   );
 
   return (
@@ -43,10 +27,10 @@ const NativeBackgroundImage = (props: NativeImageProps) => {
       source={{
         uri: uri,
         priority: FastImage.priority.normal,
-        cache: 'cacheOnly',
+        cache: FastImage.cacheControl.immutable,
       }}
       resizeMode={FastImage.resizeMode.cover}>
-      {childern}
+      {children}
     </FastImage>
   );
 };

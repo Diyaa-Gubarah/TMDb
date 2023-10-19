@@ -1,8 +1,8 @@
-import { ColorValues, SpaceValues } from "../../types/theme";
-import NativeIcon, { IconName, IconSize } from "../icon/NativeIcon";
+import {ColorValues, SpaceValues} from '../../types/theme';
+import NativeIcon, {IconName, IconSize} from '../icon/NativeIcon';
 
-import NativeTouch from "../touch/NativeTouch";
-import React from "react";
+import NativeTouch from '../touch/NativeTouch';
+import React from 'react';
 
 type Props = {
   onPress: (arg?: unknown) => void;
@@ -15,9 +15,9 @@ type Props = {
 
 const TouchIcon = ({
   onPress,
-  name = "account",
+  name = 'play',
   background,
-  color = "textPrimary",
+  color = 'textPrimary',
   padding,
   size = 28,
 }: Props) => {
@@ -25,8 +25,7 @@ const TouchIcon = ({
     <NativeTouch
       onPress={onPress}
       background={background || undefined}
-      padding={padding}
-    >
+      padding={padding}>
       <NativeIcon color={color} name={name} size={size} />
     </NativeTouch>
   );

@@ -14,7 +14,7 @@ export const FONT_FAMILY = {
 interface Props extends TextProps {
   size?: SpaceValues;
   color?: ColorValues;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   padding?: SpaceValues;
   margin?: SpaceValues;
   family?: "regular" | "medium" | "bold" | "light";

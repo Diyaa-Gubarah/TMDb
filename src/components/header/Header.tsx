@@ -1,10 +1,12 @@
-import { useRTL, useTheme, useTranslate } from "../../hooks";
+import {Dimensions} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import {NativeText} from '..';
+import NativeView from '../view/NativeView';
+import React from 'react';
+import {useTheme} from '../../hooks';
+import {withContainer} from '../../hoc';
 
-import { NativeText } from "..";
-import NativeView from "../view/NativeView";
-import React from "react";
-import { View } from "react-native";
-
+const {width} = Dimensions.get('screen');
 type LeftRightComponent = JSX.Element | null;
 
 type Props = {
@@ -13,26 +15,27 @@ type Props = {
   right?: LeftRightComponent;
 };
 
-const Header = ({ title, left, right }: Props) => {
-  const { theme } = useTheme();
-  const isRTL = useRTL();
-  const t = useTranslate();
+const Header = ({title, left, right}: Props) => {
+  const {theme} = useTheme();
   return (
-    <View
-      style={{
-        flexDirection: isRTL ? "row" : "row-reverse",
-        alignItems: "center",
-      }}
-    >
-      {left}
-      <NativeView>
-        <NativeText size="lg" color="textPrimary" align="center">
-          {t(`${title}`)}
-        </NativeText>
+    <LinearGradient
+      colors={[theme.colors.background, 'transparent']} // Adjust colors as needed
+      style={{position: 'absolute', width}}>
+      <NativeView
+        direction="row"
+        align="center"
+        flex={false}
+        marginVertical="lg">
+        {left}
+        <NativeView>
+          <NativeText size="lg" color="textPrimary" align="center">
+            {title}
+          </NativeText>
+        </NativeView>
+        {right}
       </NativeView>
-      {right}
-    </View>
+    </LinearGradient>
   );
 };
 
-export default React.memo(Header);
+export default React.memo(withContainer(Header));

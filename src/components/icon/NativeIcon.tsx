@@ -1,53 +1,21 @@
+import * as React from 'react';
+
 import {ColorValues} from '../../types/theme';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {scale} from '../../utils/responsive';
 import {useTheme} from '../../hooks';
-import * as React from 'react';
 
 export type IconName =
-  | 'dashboard'
-  | 'bus'
-  | 'ticket'
-  | 'account'
-  | 'weather-night-partly-cloudy'
-  | 'weather-partly-cloudy'
-  | 'map-marker-circle'
-  | 'map-marker'
-  | 'calendar'
-  | 'person'
-  | 'clock-outline'
-  | 'swap-vertical-circle'
-  | 'arrow-down-drop-circle'
-  | 'arrow-up-drop-circle'
-  | 'arrow-left'
-  | 'arrow-right'
-  | 'arrow-right-circle'
-  | 'arrow-left-circle'
-  | 'ray-start-arrow'
-  | 'ray-end-arrow'
-  | 'steering'
-  | 'wallet-plus'
-  | 'dots-vertical'
-  | 'dots-horizontal'
-  | 'phone'
-  | 'format-letter-case'
-  | 'chevron-left'
-  | 'chevron-right'
-  | 'comment-account'
-  | 'logout'
+  | 'play'
   | 'star'
-  | 'star-outline'
-  | 'star-half-full'
-  | 'delete'
-  | 'information'
-  | 'unfold-more-horizontal'
-  | 'view-dashboard'
-  | 'plus-circle'
-  | 'bell-circle'
-  | 'bus-clock'
-  | 'upload';
+  | 'chevron-back'
+  | 'chevron-forward'
+  | 'sunny'
+  | 'sunny-outline'
+  | 'heart-circle'
+  | 'heart-circle-outline';
 
-export type IconSize = 14 | 18 | 22 | 28;
+export type IconSize = 12 | 14 | 18 | 22 | 28 | 48;
 
 interface Props {
   name: IconName;

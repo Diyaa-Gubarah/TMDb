@@ -1,13 +1,13 @@
-import { ColorValues, SpaceValues } from "../../types/theme";
-import { Pressable, PressableProps } from "react-native";
-import React, { useCallback } from "react";
+import {ColorValues, SpaceValues} from '../../types/theme';
+import React, {useCallback} from 'react';
 
-import { useTheme } from "../../hooks";
+import {Pressable} from 'react-native';
+import {useTheme} from '../../hooks';
 
-interface Props extends Partial<PressableProps> {
+interface Props {
   onPress: () => void;
-  children: React.ReactNode;
-  background?: ColorValues | string;
+  children?: React.ReactNode;
+  background: ColorValues | undefined;
   padding?: SpaceValues;
   margin?: SpaceValues;
   rounded?: SpaceValues;
@@ -22,34 +22,38 @@ const NativeTouch = ({
   margin,
   rounded,
   borderColor,
-  ...rest
 }: Props) => {
-  const { theme } = useTheme();
-  const handlePress = useCallback(() => {
-    onPress();
-  }, [onPress]);
+  const {theme} = useTheme();
 
-  const touchableStyle = {
-    ...(padding && { padding: theme.spacing[padding] }),
-    ...(margin && { marginVertical: theme.spacing[margin] }),
-    ...(rounded && {
-      borderRadius: theme.spacing[rounded],
+  const handlePress = useCallback(() => {
+    onPress?.();
+  }, []);
+
+  const touchableStyle = React.useMemo(
+    () => ({
+      ...(padding && {padding: theme.spacing[padding]}),
+      ...(margin && {marginVertical: theme.spacing[margin]}),
+      ...(rounded && {
+        borderRadius: theme.spacing[rounded],
+      }),
+      ...(background && {
+        backgroundColor: theme.colors[background] || background,
+      }),
+      ...(borderColor && {
+        borderColor: theme.colors[borderColor],
+        borderWidth: theme.spacing.xsm / 2,
+      }),
     }),
-    ...(background && {
-      backgroundColor: theme.colors[background] || background,
-    }),
-    ...(borderColor && {
-      borderColor: theme.colors[borderColor],
-      borderWidth: theme.spacing.xsm / 2,
-    }),
-  };
+    [theme.id],
+  );
 
   return (
     <Pressable
       onPress={handlePress}
-      {...rest}
-      style={{ ...touchableStyle, overflow: "hidden" }}
-    >
+      style={{
+        ...touchableStyle,
+        overflow: 'hidden',
+      }}>
       {children}
     </Pressable>
   );
