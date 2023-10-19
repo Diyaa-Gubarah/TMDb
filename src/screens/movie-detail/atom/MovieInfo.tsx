@@ -20,10 +20,11 @@ const MovieInfo: React.FC<MovieInfoProps> = ({
 
   return (
     <View style={{padding: theme.spacing.lg}}>
-      <NativeText size="lg" family="bold" color="textPrimary">
+      <NativeText align="left" size="lg" family="bold" color="textPrimary">
         {title}
       </NativeText>
       <NativeText
+        align="left"
         size="sm"
         color="textSecondary">{`${releaseDate} , ${originalLanguage}`}</NativeText>
       <NativeText size="md" color="textPrimary" align="justify" family="light">

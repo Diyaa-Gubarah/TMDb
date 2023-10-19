@@ -62,7 +62,7 @@ const MovieList: React.FC<Props> = ({navigation}) => {
   );
 
   const keyExtractor = React.useCallback(
-    (item: Movie) => item.id.toString(),
+    (item: Movie) => `${item.id}${item.poster_path}`,
     [],
   );
 
@@ -99,8 +99,9 @@ const MovieList: React.FC<Props> = ({navigation}) => {
         bounces={false}
         onScroll={handleScroll}
         contentContainerStyle={{
-          // flexGrow: 1,
-          // flexDirection: isRTL ? 'row' : 'row-reverse',
+          flexGrow: 1,
+          flexDirection: !isRTL ? 'row' : 'row-reverse',
+          direction: isRTL ? 'ltr' : 'rtl',
           alignItems: 'center',
         }}
         data={movies?.results}

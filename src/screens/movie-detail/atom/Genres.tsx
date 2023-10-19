@@ -14,7 +14,7 @@ const Genres: React.FC<{genres: string[]}> = ({genres}) => {
       StyleSheet.create({
         infoRow: {
           flex: 1,
-          flexDirection: isRTL ? 'row-reverse' : 'row',
+          flexDirection: 'row',
           alignItems: 'center',
         },
         genreContainer: {

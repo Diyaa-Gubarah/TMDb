@@ -12,12 +12,13 @@ const Rating: React.FC<{voteAverage: number}> = ({voteAverage}) => {
     () =>
       StyleSheet.create({
         ratingContainer: {
-          flexDirection: isRTL ? 'row-reverse' : 'row',
+          flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
           backgroundColor: theme.colors.primary,
           paddingHorizontal: theme.spacing.md,
           borderRadius: theme.spacing.lg,
+          flex: 0,
         },
         ratingTextContainer: {
           marginHorizontal: theme.spacing.sm,

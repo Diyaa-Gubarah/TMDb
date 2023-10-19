@@ -61,7 +61,10 @@ const BackgroundDrop = ({data, scrollX}: Props) => {
     [calculateTranslateX],
   );
 
-  const keyExtractor = useCallback((item: Movie) => item.id.toString(), []);
+  const keyExtractor = useCallback(
+    (item: Movie) => `${item.id}${item.backdrop_path}`,
+    [],
+  );
 
   const linearGradientColors = useMemo(
     () => [
@@ -82,8 +85,9 @@ const BackgroundDrop = ({data, scrollX}: Props) => {
         contentContainerStyle={{
           width,
           height,
-          // flexGrow: 1,
-          // flexDirection: isRTL ? 'row-reverse' : 'row',
+          flexGrow: 1,
+          flexDirection: isRTL ?'row-reverse': 'row' ,
+          direction: isRTL ? 'ltr' : 'rtl',
         }}
         renderItem={renderItem}
         horizontal

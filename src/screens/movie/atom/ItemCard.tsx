@@ -18,7 +18,7 @@ const ItemCard: React.FC<Props> = ({item, onPressItem}) => {
   const styles = React.useMemo(
     () =>
       StyleSheet.create({
-        backgroundImage: {
+        container: {
           backgroundColor: `${theme.colors.background}80`,
           borderRadius: theme.spacing.lg,
           padding: theme.spacing.md,
@@ -27,6 +27,7 @@ const ItemCard: React.FC<Props> = ({item, onPressItem}) => {
           maxWidth: '90%',
           bottom: 0,
           alignSelf: 'center',
+          alignItems: 'flex-start',
         },
 
         ratingContainer: {
@@ -41,8 +42,8 @@ const ItemCard: React.FC<Props> = ({item, onPressItem}) => {
   );
 
   return (
-    <View style={styles.backgroundImage}>
-      <NativeText color="textPrimary" size="lg" family="medium">
+    <View style={styles.container}>
+      <NativeText color="textPrimary" size="lg" family="medium" align="left">
         {truncateTitle(item.title)}
       </NativeText>
       <View style={styles.ratingContainer}>

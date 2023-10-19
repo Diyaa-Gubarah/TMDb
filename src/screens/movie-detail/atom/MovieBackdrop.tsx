@@ -33,7 +33,6 @@ const MovieBackdrop: React.FC<MovieBackdropProps> = ({
   genres,
 }) => {
   const {theme} = useTheme();
-  const isRTL = useRTL();
 
   const styles = useMemo(
     () =>
@@ -58,7 +57,7 @@ const MovieBackdrop: React.FC<MovieBackdropProps> = ({
         },
         ratingContainerInner: {
           flex: 1,
-          flexDirection: isRTL ? 'row-reverse' : 'row',
+          flexDirection: 'row',
           alignItems: 'center',
         },
       }),
