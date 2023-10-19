@@ -1,11 +1,11 @@
-import {MovieBackdrop, MovieInfo} from './atom';
-import {ScrollView, StyleSheet} from 'react-native';
+import { MovieBackdrop, MovieInfo } from './atom';
 
-import {AppNavigationProps} from '../../navigations/types';
-import {GENRES} from '../../data/GENRES';
+import { AppNavigationProps } from '../../navigations/types';
+import { GENRES } from '../../data/GENRES';
 import React from 'react';
-import {useMovieStore} from '../../store/movie';
-import {useTheme} from '../../hooks';
+import { ScrollView } from 'react-native';
+import { useMovieStore } from '../../store/movie';
+import { useTheme } from '../../hooks';
 
 type Props = AppNavigationProps<'MovieDetail'>;
 
@@ -44,30 +44,5 @@ const MovieDetail: React.FC<Props> = ({navigation}) => {
     </ScrollView>
   ) : null;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  poster: {
-    width: '100%',
-    height: '50%',
-  },
-  detailsContainer: {
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  releaseDate: {
-    fontSize: 16,
-    marginTop: 8,
-  },
-  overview: {
-    fontSize: 16,
-    marginTop: 16,
-  },
-});
 
 export default MovieDetail;

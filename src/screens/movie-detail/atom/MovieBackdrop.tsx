@@ -39,7 +39,7 @@ const MovieBackdrop: React.FC<MovieBackdropProps> = ({
       StyleSheet.create({
         container: {
           width: '100%',
-          height: height * 0.4,
+          height: width > 360 ? height * 0.6 : height * 0.45,
         },
 
         gradientContainer: {

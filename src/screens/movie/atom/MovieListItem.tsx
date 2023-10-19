@@ -1,17 +1,11 @@
 import {Animated, Dimensions, StyleSheet, View} from 'react-native';
-import {
-  NativeBackgroundImage,
-  NativeText,
-  TouchIcon,
-} from '../../../components';
 
 import ItemCard from './ItemCard';
 import LikeButton from './LikeButton';
 import {Movie} from '../../../types/movie';
-import Rating from '../../movie-detail/atom/Rating';
+import {NativeBackgroundImage} from '../../../components';
 import React from 'react';
 import {scale} from '../../../utils/responsive';
-import {truncateTitle} from '../../../utils/utils';
 import {useTheme} from '../../../hooks';
 
 const {width, height} = Dimensions.get('screen');
