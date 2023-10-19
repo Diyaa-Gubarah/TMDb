@@ -2,7 +2,9 @@ import * as React from 'react';
 
 import {Animated, Dimensions, View} from 'react-native';
 import {
+  Header,
   NativeBackgroundImage,
+  NativeIcon,
   NativeText,
   NativeView,
   TouchIcon,
@@ -62,7 +64,7 @@ const MovieList: React.FC<Props> = ({navigation}) => {
               overflow: 'hidden',
             }}>
             <NativeBackgroundImage
-              uri={`https://image.tmdb.org/t/p/original/${item.poster_path}`}>
+              uri={`https://image.tmdb.org/t/p/original${item.poster_path}`}>
               <View
                 style={{
                   backgroundColor: `${theme.colors.background}60`,
@@ -113,8 +115,12 @@ const MovieList: React.FC<Props> = ({navigation}) => {
 
   return (
     <NativeView>
-      <NativeText color="textPrimary">Movie List</NativeText>
       <BackgroundDrop data={movies?.results} scrollX={scrollX} />
+      <Header
+        title="Tmdb"
+        left={<NativeIcon name="play" color="textPrimary" />}
+        right={<NativeIcon name="play" color="textPrimary" />}
+      />
       <Animated.FlatList
         horizontal
         bounces={false}
