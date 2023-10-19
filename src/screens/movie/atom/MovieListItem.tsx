@@ -14,9 +14,9 @@ import {scale} from '../../../utils/responsive';
 import {truncateTitle} from '../../../utils/utils';
 import {useTheme} from '../../../hooks';
 
-const screenWidth = Dimensions.get('screen').width;
+const {width, height} = Dimensions.get('screen');
 const spacing = scale(4);
-const itemWidth = screenWidth * 0.75;
+const itemWidth = width * 0.75;
 
 type Props = {
   item: Movie;
@@ -32,7 +32,7 @@ const MovieListItem: React.FC<Props> = ({item, onPressItem, translateY}) => {
       StyleSheet.create({
         itemContainer: {
           width: itemWidth,
-          height: '60%',
+          height: height * 0.6,
         },
 
         animatedContainerStyle: {
