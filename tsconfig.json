@@ -11,6 +11,12 @@
       "ESNext"
     ]
   },
+  "baseUrl": "./",
+  "paths": {
+    "@env/*": [
+      "src/environment/*"
+    ] // Adjust the path to match your project structure
+  },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",

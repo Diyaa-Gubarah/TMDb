@@ -1,9 +1,20 @@
+import {
+  API_KEY,
+  BASE_URL,
+  DEBUG
+} from '@env';
+
 import { Movie } from '../../types/movie';
 import { QueryClient } from '@tanstack/react-query';
 
-const API_KEY = 'ad6346552fdd528244db9469d37852d7';
+// Now you can use these variables in your code
+console.log(API_KEY);
+console.log(BASE_URL);
+console.log(`DEBUG ${DEBUG}`);
 
-const BASE_URL = 'https://api.themoviedb.org/3';
+// const API_KEY = 'ad6346552fdd528244db9469d37852d7';
+
+// const BASE_URL = 'https://api.themoviedb.org/3';
 
 const ENDPOINTS = {
   popularMovies: '/movie/popular',
