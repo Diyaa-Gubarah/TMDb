@@ -1,6 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 
-// Define a type for your navigator
 export type AppNavigatorParamList = {
     MovieList: undefined;
     MovieDetail: undefined
