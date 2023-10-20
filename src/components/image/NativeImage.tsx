@@ -6,10 +6,11 @@ import {useTheme} from '../../hooks';
 
 type NativeImageProps = {
   uri: string;
+  isDefault?: boolean;
 } & Omit<ImageProps, 'source'>;
 
 const NativeImage = (props: NativeImageProps) => {
-  const {uri} = props;
+  const {uri, isDefault = false} = props;
   const {theme} = useTheme();
   const imageStyle = React.useMemo(
     () => ({
@@ -28,7 +29,7 @@ const NativeImage = (props: NativeImageProps) => {
         priority: FastImage.priority.normal,
         cache: FastImage.cacheControl.immutable, // Only updates if url changes.
       }}
-      defaultSource={images.empty}
+      defaultSource={isDefault && images.empty}
       fallback //If true will fallback to using Image. In this case the image will still be styled and laid out the same way as FastImage.
     />
   );

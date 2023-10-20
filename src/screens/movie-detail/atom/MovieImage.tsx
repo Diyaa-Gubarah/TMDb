@@ -20,7 +20,10 @@ const MovieImage: React.FC<{backdropPath: string}> = ({backdropPath}) => {
 
   return (
     <View style={styles.container}>
-      <NativeImage uri={`https://image.tmdb.org/t/p/original${backdropPath}`} />
+      <NativeImage
+        uri={`https://image.tmdb.org/t/p/original${backdropPath}`}
+        isDefault
+      />
     </View>
   );
 };
