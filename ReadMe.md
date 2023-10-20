@@ -7,6 +7,11 @@ This React Native application allows users to explore and view popular movies fr
 - **Project Name:** TMDb
 - **Project Duration:** 5 days
 
+## Usage
+
+This React Native Movie App was developed on a Windows operating system and primarily tested on Android devices. However, it has been designed to work on both Android and iOS devices. 
+
+**Please note:** While the app is intended to be cross-platform, I'm plans to address any iOS-related issues once access to a Mac is available for testing and debugging.
 
 
 ## Table of Contents
