@@ -4,7 +4,7 @@ This React Native application allows users to explore and view popular movies fr
 
 ## Project Overview
 
-- **Project Name:** React Native Movie App
+- **Project Name:** TMDb
 - **Project Duration:** 5 days
 
 ## Table of Contents
