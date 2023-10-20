@@ -6,7 +6,6 @@ import {useRTL, useTheme} from '../../../hooks';
 
 const Rating: React.FC<{voteAverage: number}> = ({voteAverage}) => {
   const {theme} = useTheme();
-  const isRTL = useRTL();
 
   const styles = React.useMemo(
     () =>
