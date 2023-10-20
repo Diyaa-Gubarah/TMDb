@@ -9,13 +9,13 @@ This React Native application allows users to explore and view popular movies fr
 
 ## Table of Contents
 
-1. [Installation](#installation)
-2. [Development Timeline](#development-timeline)
-3. [Tasks and Solutions](#tasks-and-solutions)
-4. [Best Practices and Clean Code](#best-practices-and-clean-code)
-5. [Challenges and Issue Resolution](#challenges-and-issue-resolution)
-6. [Resources Used](#resources-used)
-7. [Final Remarks](#final-remarks)
+1. [Installation](/#installation)
+2. [Development Timeline](/#development-timeline)
+3. [Tasks and Solutions](/#tasks-and-solutions)
+4. [Best Practices and Clean Code](/#best-practices-and-clean-code)
+5. [Challenges and Issue Resolution](/#challenges-and-issue-resolution)
+6. [Resources Used](/#resources-used)
+7. [Final Remarks](/#final-remarks)
 
 ## 1. Installation
 
