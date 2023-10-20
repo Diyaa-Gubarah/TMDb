@@ -1,13 +1,12 @@
 import * as React from 'react';
 
 import {StyleSheet, View} from 'react-native';
-import {useRTL, useTheme} from '../../../hooks';
 
 import {NativeText} from '../../../components';
+import {useTheme} from '../../../hooks';
 
 const Genres: React.FC<{genres: string[]}> = ({genres}) => {
   const {theme} = useTheme();
-  const isRTL = useRTL();
 
   const styles = React.useMemo(
     () =>
