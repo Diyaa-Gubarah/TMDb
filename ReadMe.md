@@ -1,29 +1,40 @@
 # React Native Movie App
 
-This React Native application allows users to view a list of popular movies fetched from The Movie Database (TMDb) API and view more details about each movie.
+This React Native application allows users to explore and view popular movies from The Movie Database (TMDb). The app provides a user-friendly interface, responsive design, and integrates with TMDb's API to fetch movie data.
 
-**Project Timeline:** 5 Days
+## Project Overview
 
-## Installation
+- **Project Name:** React Native Movie App
+- **Project Duration:** 5 days
 
-To run this application, follow the steps below:
+## Table of Contents
 
-1. Clone this repository to your local machine:
+[1. Installation](#installation)
+[2. Usage](#usage)
+[3. Development Timeline](#development-timeline)
+[4. Tasks and Solutions](#tasks-and-solutions)
+[5. Best Practices and Clean Code](#best-practices-and-clean-code)
+[6. Challenges and Issue Resolution](#challenges-and-issue-resolution)
+[7. Resources Used](#resources-used)
+[8. Final Remarks](#final-remarks)
 
-   ````bash
+## 1. Installation
+
+To run this React Native Movie App on your local machine, follow these steps:
+
+1. Clone this repository to your local machine using Git:
+
+   ```bash
    git clone https://github.com/Diyaa-Gubarah/TMDb.git
 
-   
-2. ````bash
-   cd react-native-movie-app
+2. ```cd TMDb```
 
- 
-3. ````bash
-   npm install
+3. ```npm install```
+
+4. After the installation is complete, you can run the application on an Android emulator: ```npm run android```
+To run this application, follow the steps below:
 
 
-4. After the installation is complete, you can run the application on an Android emulator: ````bash
-          npx react-native run-android
 
 
 https://blog.logrocket.com/adding-custom-fonts-react-native/
