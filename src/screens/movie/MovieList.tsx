@@ -2,20 +2,18 @@ import * as React from 'react';
 
 import {Animated, Dimensions} from 'react-native';
 import {Header, MovieListItem} from './atom';
-import {Loading, NativeText, NativeView, TouchIcon} from '../../components';
-import {useRTL, useTheme} from '../../hooks';
+import {Loading, NativeText, NativeView} from '../../components';
 
 import {AppNavigationProps} from '../../navigations/types';
 import BackgroundDrop from './BackgroundDrop';
-import {DEFAULT_DARK_THEME_ID} from '../../constants/themes';
 import {Movie} from '../../types/movie';
 import {scale} from '../../utils/responsive';
 import {useMovieStore} from '../../store/movie';
-import useMoviesQuery from '../../query/useMoviesQuery';
+import {useMoviesQuery} from '../../query';
+import {useRTL} from '../../hooks';
 
 const screenWidth = Dimensions.get('window').width;
-const spacing = scale(4); // Adjust as needed
-const itemWidth = screenWidth * 0.75; // Adjust as needed
+const itemWidth = screenWidth * 0.75;
 
 type Props = AppNavigationProps<'MovieList'>;
 
@@ -100,7 +98,7 @@ const MovieList: React.FC<Props> = ({navigation}) => {
         onScroll={handleScroll}
         contentContainerStyle={{
           flexGrow: 1,
-          flexDirection: !isRTL ? 'row' : 'row-reverse',
+          flexDirection: isRTL ? 'row-reverse' : 'row',
           direction: isRTL ? 'ltr' : 'rtl',
           alignItems: 'center',
         }}
