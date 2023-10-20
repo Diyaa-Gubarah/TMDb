@@ -1,6 +1,7 @@
 import FastImage from 'react-native-fast-image';
 import {ImageProps} from 'react-native';
 import React from 'react';
+import images from '../../constants/images';
 import {useTheme} from '../../hooks';
 
 type NativeImageProps = {
@@ -13,7 +14,7 @@ const NativeImage = (props: NativeImageProps) => {
   const imageStyle = React.useMemo(
     () => ({
       flex: 1,
-      backgroundColor: theme.colors.background,
+      backgroundColor: theme.colors.transparent,
     }),
     [theme.id],
   );
@@ -25,8 +26,10 @@ const NativeImage = (props: NativeImageProps) => {
       source={{
         uri: uri,
         priority: FastImage.priority.normal,
-        cache: FastImage.cacheControl.immutable,
+        cache: FastImage.cacheControl.immutable, // Only updates if url changes.
       }}
+      defaultSource={images.empty}
+      fallback //If true will fallback to using Image. In this case the image will still be styled and laid out the same way as FastImage.
     />
   );
 };
