@@ -31,13 +31,13 @@ const MovieListItem: React.FC<Props> = ({item, onPressItem, translateY}) => {
 
         animatedContainerStyle: {
           flex: 1,
-          transform: [{translateY: translateY as unknown as number}], // Cast to number here
+          transform: [{translateY: translateY as unknown as number}],
           marginHorizontal: spacing,
           borderRadius: theme.spacing.lg,
           overflow: 'hidden',
         },
       }),
-    [theme],
+    [theme.id, translateY],
   );
 
   return (
@@ -53,4 +53,4 @@ const MovieListItem: React.FC<Props> = ({item, onPressItem, translateY}) => {
   );
 };
 
-export default MovieListItem;
+export default React.memo(MovieListItem);

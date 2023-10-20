@@ -1,12 +1,13 @@
-import {Animated, Dimensions, FlatList, View} from 'react-native';
+import {Animated, Dimensions, FlatList, StyleSheet, View} from 'react-native';
 import React, {useCallback, useMemo} from 'react';
 import {useRTL, useTheme} from '../../hooks';
 
 import LinearGradient from 'react-native-linear-gradient';
 import {Movie} from '../../types/movie';
-import {NativeImage} from '../../components';
+import {MovieBackdropItem} from './atom';
 
 const {width, height} = Dimensions.get('screen');
+const itemWidth = width * 0.75;
 
 type Props = {
   data: Movie[] | undefined;
@@ -20,12 +21,11 @@ const BackgroundDrop = ({data, scrollX}: Props) => {
   const calculateTranslateX = useCallback(
     (index: number) => {
       return scrollX.current.interpolate({
-        inputRange: [
-          index * width * 0.75,
-          (index + 1) * width * 0.75,
-          (index + 2) * width * 0.75,
-        ],
-        outputRange: isRTL ? [-width, 0, -width] : [0, -width, 0],
+        // TODO: this function should be updated to handle RTL
+        inputRange: isRTL
+          ? [index * itemWidth, (index + 1) * itemWidth]
+          : [index * itemWidth, (index + 1) * itemWidth],
+        outputRange: isRTL ? [width, 0] : [0, -width],
       });
     },
     [scrollX, isRTL],
@@ -35,30 +35,9 @@ const BackgroundDrop = ({data, scrollX}: Props) => {
     ({item, index}: {item: Movie; index: number}) => {
       const translateX = calculateTranslateX(index);
 
-      return (
-        <Animated.View
-          removeClippedSubviews={false}
-          style={{
-            position: 'absolute',
-            transform: [{translateX}],
-            width: width,
-            height,
-            overflow: 'hidden',
-          }}>
-          <View
-            style={{
-              width: width,
-              height: height,
-              position: 'absolute',
-            }}>
-            <NativeImage
-              uri={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-            />
-          </View>
-        </Animated.View>
-      );
+      return <MovieBackdropItem item={item} translateX={translateX} />;
     },
-    [calculateTranslateX],
+    [data?.length],
   );
 
   const keyExtractor = useCallback(
@@ -68,42 +47,47 @@ const BackgroundDrop = ({data, scrollX}: Props) => {
 
   const linearGradientColors = useMemo(
     () => [
-      `${theme.colors.background}`,
+      theme.colors.background,
       'transparent',
-      `${theme.colors.background}`,
+      'transparent',
+      theme.colors.background,
     ],
-    [theme.colors.background],
+    [theme.id],
+  );
+
+  const styles = React.useMemo(
+    () =>
+      StyleSheet.create({
+        contentContainerStyle: {
+          flex: 1,
+          flexDirection: isRTL ? 'row-reverse' : 'row',
+          direction: isRTL ? 'ltr' : 'rtl',
+        },
+        gradient: {
+          width,
+          height,
+          position: 'absolute',
+          bottom: 0,
+        },
+      }),
+    [isRTL],
   );
 
   return (
-    <View style={{height, width, position: 'absolute', top: 0}}>
+    <View style={{height, width, position: 'absolute'}}>
       <FlatList
         showsHorizontalScrollIndicator={false}
         data={data}
         keyExtractor={keyExtractor}
         removeClippedSubviews={false}
-        contentContainerStyle={{
-          width,
-          height,
-          flexGrow: 1,
-          flexDirection: isRTL ?'row-reverse': 'row' ,
-          direction: isRTL ? 'ltr' : 'rtl',
-        }}
+        contentContainerStyle={styles.contentContainerStyle}
         renderItem={renderItem}
         horizontal
         snapToInterval={width}
         snapToAlignment={'start'}
         pagingEnabled
       />
-      <LinearGradient
-        colors={linearGradientColors}
-        style={{
-          width,
-          height,
-          position: 'absolute',
-          bottom: 0,
-        }}
-      />
+      <LinearGradient colors={linearGradientColors} style={styles.gradient} />
     </View>
   );
 };

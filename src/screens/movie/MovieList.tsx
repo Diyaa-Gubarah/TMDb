@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {Animated, Dimensions} from 'react-native';
+import {Animated, Dimensions, StyleSheet, View} from 'react-native';
 import {Header, MovieListItem} from './atom';
 import {Loading, NativeText, NativeView} from '../../components';
 
@@ -12,8 +12,8 @@ import {useMovieStore} from '../../store/movie';
 import {useMoviesQuery} from '../../query';
 import {useRTL} from '../../hooks';
 
-const screenWidth = Dimensions.get('window').width;
-const itemWidth = screenWidth * 0.75;
+const width = Dimensions.get('screen').width;
+const itemWidth = width * 0.75;
 
 type Props = AppNavigationProps<'MovieList'>;
 
@@ -29,7 +29,7 @@ const MovieList: React.FC<Props> = ({navigation}) => {
       Animated.event([{nativeEvent: {contentOffset: {x: scrollX.current}}}], {
         useNativeDriver: true,
       }),
-    [scrollX],
+    [scrollX.current],
   );
 
   const calculateTranslateY = React.useCallback(
@@ -40,10 +40,15 @@ const MovieList: React.FC<Props> = ({navigation}) => {
           index * itemWidth,
           (index + 1) * itemWidth,
         ],
-        outputRange: [0, scale(-30), 0],
+        outputRange: [0, scale(-40), 0],
       });
     },
     [scrollX.current],
+  );
+
+  const data = React.useMemo(
+    () => (isRTL ? movies?.results?.reverse() : movies?.results),
+    [movies?.results?.length, isRTL],
   );
 
   const renderItem = React.useCallback(
@@ -56,12 +61,12 @@ const MovieList: React.FC<Props> = ({navigation}) => {
         />
       );
     },
-    [setMovie],
+    [data?.length],
   );
 
   const keyExtractor = React.useCallback(
     (item: Movie) => `${item.id}${item.poster_path}`,
-    [],
+    [data?.length],
   );
 
   const onPressItem = React.useCallback(
@@ -70,6 +75,19 @@ const MovieList: React.FC<Props> = ({navigation}) => {
       navigation.navigate('MovieDetail');
     },
     [navigation],
+  );
+
+  const styles = React.useMemo(
+    () =>
+      StyleSheet.create({
+        contentContainerStyle: {
+          flexGrow: 1,
+          flexDirection: isRTL ? 'row-reverse' : 'row',
+          direction: isRTL ? 'ltr' : 'rtl',
+          alignItems: 'center',
+        },
+      }),
+    [isRTL],
   );
 
   if (isLoading) {
@@ -88,7 +106,7 @@ const MovieList: React.FC<Props> = ({navigation}) => {
 
   return (
     <NativeView>
-      <BackgroundDrop data={movies?.results} scrollX={scrollX} />
+      <BackgroundDrop data={data} scrollX={scrollX} />
       <Header />
 
       <Animated.FlatList
@@ -96,13 +114,8 @@ const MovieList: React.FC<Props> = ({navigation}) => {
         showsHorizontalScrollIndicator={false}
         bounces={false}
         onScroll={handleScroll}
-        contentContainerStyle={{
-          flexGrow: 1,
-          flexDirection: isRTL ? 'row-reverse' : 'row',
-          direction: isRTL ? 'ltr' : 'rtl',
-          alignItems: 'center',
-        }}
-        data={movies?.results}
+        contentContainerStyle={styles.contentContainerStyle}
+        data={data}
         keyExtractor={keyExtractor}
         renderItem={({item, index}) => renderItem(item, onPressItem, index)}
         snapToAlignment={'start'}
