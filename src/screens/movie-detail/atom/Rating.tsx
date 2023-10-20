@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import {NativeIcon, NativeText} from '../../../components';
-import {StyleSheet, View} from 'react-native';
-import {useRTL, useTheme} from '../../../hooks';
+import { NativeIcon, NativeText } from '../../../components';
+import { StyleSheet, View } from 'react-native';
+
+import { useTheme } from '../../../hooks';
 
 const Rating: React.FC<{voteAverage: number}> = ({voteAverage}) => {
   const {theme} = useTheme();
