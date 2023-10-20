@@ -9,14 +9,14 @@ This React Native application allows users to explore and view popular movies fr
 
 ## Table of Contents
 
-[1. Installation](#installation)
-[2. Usage](#usage)
-[3. Development Timeline](#development-timeline)
-[4. Tasks and Solutions](#tasks-and-solutions)
-[5. Best Practices and Clean Code](#best-practices-and-clean-code)
-[6. Challenges and Issue Resolution](#challenges-and-issue-resolution)
-[7. Resources Used](#resources-used)
-[8. Final Remarks](#final-remarks)
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Development Timeline](#development-timeline)
+4. [Tasks and Solutions](#tasks-and-solutions)
+5. [Best Practices and Clean Code](#best-practices-and-clean-code)
+6. [Challenges and Issue Resolution](#challenges-and-issue-resolution)
+7. [Resources Used](#resources-used)
+8. [Final Remarks](#final-remarks)
 
 ## 1. Installation
 
@@ -31,8 +31,7 @@ To run this React Native Movie App on your local machine, follow these steps:
 
 3. ```npm install```
 
-4. After the installation is complete, you can run the application on an Android emulator: ```npm run android```
-To run this application, follow the steps below:
+4. After the installation is complete, you can run the application on an Android emulator using: ```npm run android```
 
 
 
