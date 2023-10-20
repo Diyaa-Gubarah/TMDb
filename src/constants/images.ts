@@ -1,3 +1,3 @@
 export default {
-    empty: require('../assets/images/verified.jpg')
+    empty: require('../assets/images/empty.png')
 }
