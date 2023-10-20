@@ -235,7 +235,7 @@ The development timeline was marked by continuous learning and problem-solving. 
 
 As the developer of this app, I am pleased with the outcome and the learning experiences gained during its creation. This project demonstrates the ability to craft a full-fledged mobile application from scratch and showcases the commitment to providing users with a top-tier experience.
 
-Should additional time be allotted for this project, there are several potential enhancements that can be made:
+If additional time be allotted for this project, there are several potential enhancements that can be made:
 
 - Implement user authentication and user-specific features.
 - Incorporate additional movie details and trailers.
@@ -243,6 +243,8 @@ Should additional time be allotted for this project, there are several potential
 - Improve accessibility and language support even further.
 - The MovieDetail component can utilizes the composition pattern to avoid prop drilling and enhances maintainability and extensibility.
 - A higher-order component can be  applied to manage data fetching and error handling. This ensures a seamless user experience, showing loading indicators and error messages as needed.
+- I should address and fix the background drop animation behavior in RTL (Right-to-Left) devices to ensure a consistent and smooth user experience for all users.
+
 
 
 In conclusion, the React Native Movie App stands as a testament to the dedication to quality development, embracing innovative solutions, and a commitment to providing users with a memorable experience while exploring the world of movies.
