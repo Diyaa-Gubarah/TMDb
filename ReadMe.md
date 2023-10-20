@@ -15,15 +15,15 @@ To run this application, follow the steps below:
 
    
 2. ````bash
- cd react-native-movie-app
+   cd react-native-movie-app
 
  
 3. ````bash
-npm install
+   npm install
 
 
 4. After the installation is complete, you can run the application on an Android emulator: ````bash
-npx react-native run-android
+          npx react-native run-android
 
 
 https://blog.logrocket.com/adding-custom-fonts-react-native/
