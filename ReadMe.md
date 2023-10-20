@@ -226,6 +226,10 @@ Should additional time be allotted for this project, there are several potential
 - Incorporate additional movie details and trailers.
 - Create user profiles and personalized movie recommendations.
 - Improve accessibility and language support even further.
+- The MovieDetail component can utilizes the composition pattern to avoid prop drilling and enhances maintainability and extensibility.
+In addition to these potential future enhancements, the following practices and patterns have already been applied in the development of this app:
+- A higher-order component can be  applied to manage data fetching and error handling. This ensures a seamless user experience, showing loading indicators and error messages as needed.
+
 
 In conclusion, the React Native Movie App stands as a testament to the dedication to quality development, embracing innovative solutions, and a commitment to providing users with a memorable experience while exploring the world of movies.
 
