@@ -18,19 +18,6 @@ const BackgroundDrop = ({data, scrollX}: Props) => {
   const {theme} = useTheme();
   const isRTL = useRTL();
 
-  // const calculateTranslateX = useCallback(
-  //   (index: number) => {
-  //     return scrollX.current.interpolate({
-  //       // TODO: this function should be updated to handle RTL
-  //       inputRange: isRTL
-  //         ? [index * itemWidth, (index + 1) * itemWidth]
-  //         : [index * itemWidth, (index + 1) * itemWidth],
-  //       outputRange: isRTL ? [width, 0] : [0, -width],
-  //     });
-  //   },
-  //   [scrollX, isRTL],
-  // );
-
   const calculateTranslateX = useCallback(
     (index: number) => {
       return scrollX.current.interpolate({
