@@ -14,6 +14,21 @@ This React Native Movie App was developed on a Windows operating system and prim
 **Please note:** While the app is intended to be cross-platform, I'm plans to address any iOS-related issues once access to a Mac is available for testing and debugging.
 
 
+## Troubleshooting
+
+If you encounter issues when running the release APK of the app on your Android device, you might need to disable Google Play Protect. Google Play Protect can sometimes block apps it considers potentially unsafe.
+
+Here's how to disable Play Protect:
+
+1. Open the **Google Play Store** app on your Android device.
+2. Tap the **Menu icon** (typically three horizontal lines) in the top-left corner to open the sidebar menu.
+3. Select **Play Protect** from the menu.
+4. In the Play Protect screen, tap the **Settings icon** (typically a gear or cogwheel).
+5. In the Play Protect settings, disable the option to "Scan apps with Play Protect" or similar wording.
+
+By disabling Play Protect, you should be able to install and run the app without any issues.
+
+
 ## Table of Contents
 
 1. [Installation](#installation)
